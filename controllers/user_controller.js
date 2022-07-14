@@ -76,12 +76,10 @@ const signUp = async(req, res) => {
             var hashedPassword = await bcrypt.hash(req.body.password, 8);
             const user = User.create({
                 name: req.body.name,
+                lastName: req.body.lastName,
                 email: req.body.email,
                 password: hashedPassword,
                 phoneNumber: req.body.phoneNumber,
-                licensePlate: req.body.licensePlate,
-                vehicleType: req.body.vehicleType,
-                fuelType: req.body.fuelType
             }, (err, user) => {
                 if (err) {
                     if (err.code == 11000) {
