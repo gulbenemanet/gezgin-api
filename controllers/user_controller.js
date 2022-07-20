@@ -28,18 +28,18 @@ const signIn = async(req, res) => {
                             "message": "Verilen password bilgileri hatalıdır.",
                         }) // şifre hatalı
                 } else if (result) {
-                    // const token = jwt.sign({
-                    //     id: user._id
-                    // }, 'supersecret', {
-                    //     expiresIn: '24h'
-                    // })
+                    const token = jwt.sign({
+                        id: user._id
+                    }, 'supersecret', {
+                        expiresIn: '24h'
+                    })
                     res.status(200).json({
                         "success": true,
                         "code": 200,
                         "message": "Girişiniz başarıyla yapıldı.",
                         "data": {
                             profile: user,
-                            //token: token
+                            token: token
                         }
                     })
                 }
@@ -93,18 +93,18 @@ const signUp = async(req, res) => {
                         res.json(err)
                     }
                 } else {
-                    // const token = jwt.sign({
-                    //     id: user._id
-                    // }, 'supersecret', {
-                    //     expiresIn: '24h'
-                    // })
+                    const token = jwt.sign({
+                        id: user._id
+                    }, 'supersecret', {
+                        expiresIn: '24h'
+                    })
                     res.status(200).json({
                         "success": true,
                         "code": 200,
                         "message": "Database'e ekleme yapıldı.",
                         "data": {
                             profile: user,
-                           // token: token
+                           token: token
                         }
                     })
                 }

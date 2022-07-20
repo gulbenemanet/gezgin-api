@@ -9,7 +9,6 @@ router.post('/signIn', userController.signIn);
 router.post('/signUp', userController.signUp);
 router.get('/logout', userController.logOut);
 router.get('/currentUser', userController.getCurrentUser);
-//router.get('/api/current_user', apiController.getCurrentUser);
 
 
 module.exports = router;
