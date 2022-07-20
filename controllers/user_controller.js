@@ -136,6 +136,7 @@ const logOut = async(req, res) => {
 }
 
 const getCurrentUser = (req, res) => {
+    console.log(req.user);
     res.status(200).json({
         "success": true,
         "code": 200,

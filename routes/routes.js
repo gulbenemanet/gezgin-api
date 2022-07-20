@@ -7,8 +7,8 @@ router.get('/', (req, res) => {res.json("ok")});
 
 router.post('/signIn', userController.signIn);
 router.post('/signUp', userController.signUp);
-router.get('/logout', userController.logOut);
-router.get('/currentUser', userController.getCurrentUser);
+router.get('/logout', auth, userController.logOut);
+router.get('/currentUser', auth, userController.getCurrentUser);
 
 
 module.exports = router;
