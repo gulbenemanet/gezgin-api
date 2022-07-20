@@ -13,10 +13,15 @@ router.post('/signIn', userController.signIn);
 router.post('/signUp', userController.signUp);
 router.get('/logout', auth, userController.logOut);
 router.get('/currentUser', auth, userController.getCurrentUser);
-router.get('/getCards',auth, apiController.getCards)
-router.post('/postCards', auth, apiController.postCards)
-router.post('/scannedCards', auth, apiController.scannedCards),
-router.post('/solvedTests', auth, apiController.solvedTests)
+router.get('/getCards', auth, apiController.getCards);
+router.post('/postCard', auth, apiController.postCard);
+router.post('/scannedCards', auth, apiController.scannedCards);
+//router.get('/getTests', auth, apiController.getTests);
+router.post('/postTest', auth, apiController.postTest);
+router.post('/solvedTests', auth, apiController.solvedTests);
+//router.get('/getAwards', auth, apiController.getAwards);
+//router.get('/postAward', auth, apiController.postAward);
+//router.get('/winnedAward', auth, apiController.winnedAward);
 
 
 module.exports = router;
