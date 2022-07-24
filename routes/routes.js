@@ -16,12 +16,13 @@ router.get('/currentUser', auth, userController.getCurrentUser);
 router.get('/getCards', auth, apiController.getCards);
 router.post('/postCard', auth, apiController.postCard);
 router.post('/scannedCards', auth, apiController.scannedCards);
-//router.get('/getTests', auth, apiController.getTests);
+router.get('/getSolvedTests', auth, apiController.getSolvedTests);
+router.get('/getTests', auth, apiController.getTests);
 router.post('/postTest', auth, apiController.postTest);
 router.post('/solvedTests', auth, apiController.solvedTests);
-//router.get('/getAwards', auth, apiController.getAwards);
-//router.get('/postAward', auth, apiController.postAward);
-//router.get('/winnedAward', auth, apiController.winnedAward);
+router.get('/getAwards', auth, apiController.getAwards);
+router.post('/postAward', auth, apiController.postAward);
+router.post('/winnedAward', auth, apiController.winnedAward);
 
 
 module.exports = router;

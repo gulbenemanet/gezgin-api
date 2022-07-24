@@ -3,10 +3,14 @@ const Schema = mongoose.Schema;
 
 const testSchema = new Schema({
     test_id: {
-        type: Number
+        type: Number,
+        unique: true
     },
     card_id: {
         type: Number
+    },
+    mode: {
+        type: String
     },
     ques_ans: [{
         question: {
@@ -18,10 +22,7 @@ const testSchema = new Schema({
         r_answer: {
             type: String
         }
-    }],
-    point: {
-        type: Number
-    }
+    }]
 }, { collection: 'tests' })
 
 const Test = mongoose.model('tests', testSchema)

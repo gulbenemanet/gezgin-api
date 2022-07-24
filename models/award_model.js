@@ -3,9 +3,10 @@ const Schema = mongoose.Schema;
 
 const awardSchema = new Schema({
     award_id: {
-        type: String,
+        type: Number,
         trim: true,
-        maxLength: 50
+        maxLength: 50,
+        unique: true
     },
     award_name: {
         type: String,

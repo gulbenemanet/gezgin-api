@@ -12,11 +12,22 @@ const getCards = async (req, res) =>{
                 card_id: req.user.scannedCards[i]
             }).select({ _id: 0, __v: 0 })
         }
+        const allCards = await Card.find({});
+        for (let i = 0; i < allCards.length; i++) {
+            for (let j = 0; j < result.length; j++) {
+                // if (result[0][i].card_id == allCards[j].card_id) {
+                //     allCards.splice(j,1)
+                // }
+            }
+        }
         res.status(200).json({
             "success": true,
             "code": 200,
             "message": "Kullanıcı tarafından taratılmış kartlar gönderildi.",
-            "data": result
+            "data": {
+                "scannedCards": result,
+                "allCards": allCards
+            }
         })
     } catch(err){
         res.json(err);
@@ -66,7 +77,7 @@ const postTest = async (req, res) => {
                 "success": true,
                 "code": 200,
                 "message": "Database'e ekleme yapıldı.",
-                "data": createTest
+                "data": createTest  // doğru response gelmiyo ama çalışıyo
             })
         } 
     } catch(err){
@@ -80,7 +91,7 @@ const solvedTests = async (req, res) => {
         let point = req.user.point;
         const id = req.user._id; 
         const solvedTest = await Test.find({test_id: req.body.test_id})
-        point = point + solvedTest.point;
+        point = point + req.body.point;
         const result = await User.updateOne({_id : id},{point : point, $push : {solvedTests: req.body.test_id}});
         res.status(200).json({
             "success": true,
@@ -95,22 +106,40 @@ const solvedTests = async (req, res) => {
     }
 }
 
-// const getTests = async (req,res) =>{
-//     let result= []
-//     for (let i = 0; i < req.user.solvedTests.length; i++) {
-//         result[i] = await Card.find({
-//             card_id : req.user.solvedTests[i]
-//         })
-        
-//     }
-//     res.json(result)
-    
-// }
+const getSolvedTests = async (req,res) => {
+    let result= []
+    for (let i = 0; i < req.user.solvedTests.length; i++) {
+        result[i] = await Card.find({
+            card_id : req.user.solvedTests[i]
+        }) 
+    }
+    res.status(200).json({
+        "success": true,
+        "code": 200,
+        "message": "Çözülen testler gönderildi.",
+        "data": result
+    })
+}
+
+const getTests = async (req, res) => {
+    let result = [];
+    for (let i = 0; i < req.user.scannedCards.length; i++) {
+        result[i] = await Test.find({
+            card_id : req.user.scannedCards[i]
+        }) 
+    }
+    res.status(200).json({
+        "success": true,
+        "code": 200,
+        "message": "Taratılan kartların çözülecek testleri gönderildi.",
+        "data": result
+    })
+}
 
 const postAward = async (req, res) => {
     try {
         const createAward = await Award.create(req.body);
-        if (result) {
+        if (createAward) {
             res.status(200).json({
                 "success": true,
                 "code": 200,
@@ -143,8 +172,8 @@ const winnedAward = async (req, res) => {
     try{
         let point = req.user.point;
         const id = req.user._id; 
-        const chosenAward  = await Test.find({award_id: req.body.award_id})
-        point = point + chosenAward.point;
+        const chosenAward  = await Award.find({award_id: req.body.award_id})
+        point = point - chosenAward[0].point;
         const result = await User.updateOne({_id : id},{point : point, $push : {winnedAwards: req.body.award_id}});
         res.status(200).json({
             "success": true,
@@ -165,8 +194,9 @@ module.exports = {
     postTest, //test ekleme
     scannedCards, //Kullanıcı kart tarattığında profiline eklenmesi
     solvedTests, //Kullanıcı test çözdüğünde teste göre puan eklenmesi ve çözülen testin kullanıcının profiline eklenmesi
-    //getTests, //testleri listeleme -taratılmış kartların
-    //getAwards, //ödülleri listeleme
-    //postAward, //ödül ekleme
-    //winnedAward //ödül alma, puan düşürülmesi, alınan ödülün kullanıcı profiline eklenmesi
+    getSolvedTests, //testleri listeleme -taratılmış kartların
+    getTests, //Taratılan kartların testlerinin gözükmesi not: yeterince testeklenmediği için denenmedi
+    getAwards, //ödülleri listeleme
+    postAward, //ödül ekleme
+    winnedAward //ödül alma, puan düşürülmesi, alınan ödülün kullanıcı profiline eklenmesi
 };
