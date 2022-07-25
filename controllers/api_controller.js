@@ -13,11 +13,11 @@ const getCards = async (req, res) =>{
             }).select({ _id: 0, __v: 0 })
         }
         const allCards = await Card.find({});
-        for (let i = 0; i < allCards.length; i++) {
-            for (let j = 0; j < result.length; j++) {
-                // if (result[0][i].card_id == allCards[j].card_id) {
-                //     allCards.splice(j,1)
-                // }
+        for (let i = 0; i < result.length; i++) {
+            for (let j = 0; j < allCards.length; j++) {
+                if (result[i][0].card_id == allCards[j].card_id) {
+                    allCards.splice(j,1)
+                }
             }
         }
         res.status(200).json({
@@ -26,7 +26,7 @@ const getCards = async (req, res) =>{
             "message": "Kullanıcı tarafından taratılmış kartlar gönderildi.",
             "data": {
                 "scannedCards": result,
-                "allCards": allCards
+                "nonScannedCards": allCards
             }
         })
     } catch(err){
@@ -38,7 +38,7 @@ const getCards = async (req, res) =>{
 const postCard = async (req, res) => {
     try {
         const createCard = await Card.create(req.body);
-        if (result) {
+        if (createCard) {
             res.status(200).json({
                 "success": true,
                 "code": 200,
@@ -72,12 +72,12 @@ const scannedCards = async (req, res)=> {
 const postTest = async (req, res) => {
     try {
         const createTest = await Test.create(req.body);
-        if (result) {
+        if (createTest) {
             res.status(200).json({
                 "success": true,
                 "code": 200,
                 "message": "Database'e ekleme yapıldı.",
-                "data": createTest  // doğru response gelmiyo ama çalışıyo
+                "data": createTest 
             })
         } 
     } catch(err){
@@ -109,8 +109,8 @@ const solvedTests = async (req, res) => {
 const getSolvedTests = async (req,res) => {
     let result= []
     for (let i = 0; i < req.user.solvedTests.length; i++) {
-        result[i] = await Card.find({
-            card_id : req.user.solvedTests[i]
+        result[i] = await Test.find({
+            test_id : req.user.solvedTests[i]
         }) 
     }
     res.status(200).json({
@@ -189,13 +189,13 @@ const winnedAward = async (req, res) => {
 }
 
 module.exports = {
-    getCards, //taratılmış kartları listeleme
+    getCards, //taratılmış ve taratılmamış kartları listeleme
     postCard, //kart ekleme
     postTest, //test ekleme
     scannedCards, //Kullanıcı kart tarattığında profiline eklenmesi
     solvedTests, //Kullanıcı test çözdüğünde teste göre puan eklenmesi ve çözülen testin kullanıcının profiline eklenmesi
-    getSolvedTests, //testleri listeleme -taratılmış kartların
-    getTests, //Taratılan kartların testlerinin gözükmesi not: yeterince testeklenmediği için denenmedi
+    getSolvedTests, //Çözülen testlerin listelenmesi
+    getTests, //Taratılan kartların testlerinin listelenmesi
     getAwards, //ödülleri listeleme
     postAward, //ödül ekleme
     winnedAward //ödül alma, puan düşürülmesi, alınan ödülün kullanıcı profiline eklenmesi
