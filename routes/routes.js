@@ -11,18 +11,18 @@ router.get('/', (req, res) => {res.json("ok")});
 
 router.post('/signIn', userController.signIn);
 router.post('/signUp', userController.signUp);
-router.get('/logout', auth, userController.logOut);
-router.get('/currentUser', auth, userController.getCurrentUser);
-router.get('/getCards', auth, apiController.getCards);
-router.post('/postCard', auth, apiController.postCard);
-router.post('/scannedCards', auth, apiController.scannedCards);
-router.get('/getSolvedTests', auth, apiController.getSolvedTests);
-router.get('/getTests', auth, apiController.getTests);
-router.post('/postTest', auth, apiController.postTest);
-router.post('/solvedTests', auth, apiController.solvedTests);
-router.get('/getAwards', auth, apiController.getAwards);
-router.post('/postAward', auth, apiController.postAward);
-router.post('/winnedAward', auth, apiController.winnedAward);
+router.get('/logout', userController.logOut);
+router.get('/currentUser', userController.getCurrentUser);
+router.get('/getCards', apiController.getCards);
+router.post('/postCard', apiController.postCard);
+router.post('/scannedCards', apiController.scannedCards);
+router.get('/getSolvedTests', apiController.getSolvedTests);
+router.get('/getTests', apiController.getTests);
+router.post('/postTest', apiController.postTest);
+router.post('/solvedTests', apiController.solvedTests);
+router.get('/getAwards', apiController.getAwards);
+router.post('/postAward', apiController.postAward);
+router.post('/winnedAward', apiController.winnedAward);
 
 
 module.exports = router;
