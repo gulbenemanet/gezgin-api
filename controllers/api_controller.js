@@ -54,7 +54,8 @@ const postCard = async (req, res) => {
 
 const scannedCards = async (req, res)=> {
     try{
-        const id = req.user._id
+        const user  = await User.find({_id: req.body.user_id})
+        const id = user[0]._id
         const result = await User.updateOne({_id : id},{$push : {scannedCards: req.body.card_id}});
         res.status(200).json({
             "success": true,
@@ -88,8 +89,9 @@ const postTest = async (req, res) => {
 
 const solvedTests = async (req, res) => {  
     try{
-        let point = req.user.point;
-        const id = req.user._id; 
+        const user  = await User.find({_id: req.body.user_id})
+        let point = user[0].point;
+        const id = user[0]._id; 
         const solvedTest = await Test.find({test_id: req.body.test_id})
         point = point + req.body.point;
         const result = await User.updateOne({_id : id},{point : point, $push : {solvedTests: req.body.test_id}});
