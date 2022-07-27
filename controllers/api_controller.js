@@ -4,7 +4,7 @@ const Test = require('../models/test_model');
 const Award = require('../models/award_model');
 
 const getCards = async (req, res) =>{
-    //console.log(req.user.scannedCards)
+    console.log(req.user)
     let result = []
     try {
         for (let i = 0; i < req.user.scannedCards.length; i++) {
