@@ -130,7 +130,7 @@ const getSolvedTests = async (req,res) => {
 const getTests = async (req, res) => {
     let result = [];
     let  arr = [];
-    const k = 0;
+    let k = 0;
     for (let i = 0; i < req.user.scannedCards.length; i++) {
         result[i] = await Test.find({
             card_id : req.user.scannedCards[i]
