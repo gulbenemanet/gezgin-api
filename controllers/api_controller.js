@@ -136,6 +136,7 @@ const getTests = async (req, res) => {
         }) 
         arr[i] = result[i][0].card_id
     }
+    console.log(arr);
     res.status(200).json({
         "success": true,
         "code": 200,
