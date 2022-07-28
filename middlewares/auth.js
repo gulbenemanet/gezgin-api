@@ -23,7 +23,7 @@ module.exports = async function auth(req, res, next) {
                     message: "Çıkış yaptığınız tokenle giremezsiniz."
                 })
             } else {
-                const sonuc = jwt.verify(token, 'supersecret')
+                const sonuc = jwt.verify(token, 'signing key')
 
                 //console.log(sonuc);
                 const bulunan = await User.findById(sonuc.id)
