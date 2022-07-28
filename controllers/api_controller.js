@@ -24,7 +24,7 @@ const getCards = async (req, res) =>{
             "success": true,
             "code": 200,
             "message": "Kullanıcı tarafından taratılmış kartlar gönderildi.",
-            "data": result[0]
+            "data": result
             // {
             //     "scannedCards": result[0],
             //     "nonScannedCards": allCards
