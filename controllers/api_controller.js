@@ -201,6 +201,7 @@ const getWinnedAwards = async (req, res) =>{
                 award_id: req.user.winnedAwards[i]
             }).select({ _id: 0, __v: 0 })
         }
+        console.log(result);
         res.status(200).json({
             "success": true,
             "code": 200,
