@@ -20,7 +20,7 @@ const getCards = async (req, res) =>{
                 }
             }
         }
-        console.log(result)
+        console.log("result: " + result)
         res.status(200).json({
             "success": true,
             "code": 200,
