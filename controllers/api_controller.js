@@ -197,7 +197,7 @@ const getWinnedAwards = async (req, res) =>{
     const result = {};
     try {
         for (let i = 0; i < req.user.winnedAwards.length; i++) {
-            result[i] = await Award.find({
+            result = await Award.find({
                 award_id: req.user.winnedAwards[i]
             }).select({ _id: 0, __v: 0 })
         }
@@ -207,7 +207,7 @@ const getWinnedAwards = async (req, res) =>{
             "code": 200,
             "message": "Kullanıcı tarafından taratılmış kartlar gönderildi.",
             "data": {
-                "winnedAwards": result[0]
+                "winnedAwards": result
             }
         })
     } catch(err){
