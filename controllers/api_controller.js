@@ -133,22 +133,13 @@ const getTests = async (req, res) => {
     for (let i = 0; i < req.user.scannedCards.length; i++) {
         result[i] = await Test.find({
             card_id : req.user.scannedCards[i]
-        }, (err, result1) => {
-            if (err) {
-                res.status(404).json({
-                    "success": false,
-                    "code": 404,
-                    "message": "Bulunamadı",
-                })
-            } else {
-                console.log(result1);
-                let x = i * 2;
-                for (let j = 0; j < x; j++) {
-                    arr[j] = result1[j].test_id
-                }
-            }
-        })
+        })    
+        console.log(result[i].length);
+        for (let j = 0; j < result[i].length; j++) {
+            arr[j] = result[i][0].test_id       
+        }
     }
+
     console.log(arr);
     res.status(200).json({
         "success": true,
