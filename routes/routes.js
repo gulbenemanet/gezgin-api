@@ -16,7 +16,7 @@ router.get('/currentUser', auth, userController.getCurrentUser);
 router.get('/getCards', auth, apiController.getCards);
 router.post('/postCard', apiController.postCard);
 router.post('/scannedCards', apiController.scannedCards);
-router.get('/getSolvedTests', apiController.getSolvedTests);
+router.get('/getSolvedTests', auth, apiController.getSolvedTests);
 router.get('/getTests', auth, apiController.getTests);
 router.post('/postTest', apiController.postTest);
 router.post('/solvedTests', apiController.solvedTests);
