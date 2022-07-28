@@ -135,10 +135,10 @@ const getTests = async (req, res) => {
             card_id : req.user.scannedCards[i]
         }) 
         for (let j = 0; j < result[i].length; j++) {
-            arr[i] = result[i][j].test_id
-            i++
+            for (let k = 0; k < result[i].length; k++) {
+                arr[k] = result[i][j].test_id             
+            }
         }
-        i = i - result[i].length;
     }
     console.log(arr);
     res.status(200).json({
