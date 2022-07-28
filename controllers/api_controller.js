@@ -192,9 +192,27 @@ const winnedAward = async (req, res) => {
     }
 }
 
-const getWinnedAwards = async (req, res) => {
-    const awards  = await Award.find({_id: req.user.award_id});
-    console.log(awards);
+const getWinnedAwards = async (req, res) =>{
+    console.log(req.user)
+    let result = []
+    try {
+        for (let i = 0; i < req.user.winnedAwards.length; i++) {
+            result[i] = await Award.find({
+                award_id: req.user.winnedAwards[i]
+            }).select({ _id: 0, __v: 0 })
+        }
+        res.status(200).json({
+            "success": true,
+            "code": 200,
+            "message": "Kullanıcı tarafından taratılmış kartlar gönderildi.",
+            "data": {
+                "winnedAwards": result,
+            }
+        })
+    } catch(err){
+        res.json(err);
+        console.log(err);
+    }
 }
 
 module.exports = {
