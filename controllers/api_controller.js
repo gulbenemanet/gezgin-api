@@ -20,6 +20,7 @@ const getCards = async (req, res) =>{
                 }
             }
         }
+        console.log(result)
         res.status(200).json({
             "success": true,
             "code": 200,
@@ -202,6 +203,7 @@ const postWinnedAwards = async (req, res) =>{
         "data": result[0]
     })
 }
+
 
 module.exports = {
     getCards, //taratılmış ve taratılmamış kartları listeleme
