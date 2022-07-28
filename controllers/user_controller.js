@@ -136,12 +136,12 @@ const logOut = async(req, res) => {
 }
 
 const getCurrentUser = (req, res) => {
-    console.log(req.user);
+    const user  = await User.find({_id: req.body.user_id})
     res.status(200).json({
         "success": true,
         "code": 200,
         "message": "Kullanıcı bilgileri gönderildi.",
-        "data": req.user
+        "data": user
     })
 }
 
