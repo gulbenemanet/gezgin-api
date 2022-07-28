@@ -142,7 +142,10 @@ const getTests = async (req, res) => {
                 })
             } else {
                 console.log(result1);
-                arr[i] = result1.test_id
+                let x = i * 2;
+                for (let j = 0; j < x; j++) {
+                    arr[j] = result1[j].test_id
+                }
             }
         })
     }
