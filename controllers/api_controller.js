@@ -192,28 +192,14 @@ const winnedAward = async (req, res) => {
     }
 }
 
-const getWinnedAwards = async (req, res) =>{
-    console.log(req.user)
-    const result = {};
-    try {
-        for (let i = 0; i < req.user.winnedAwards.length; i++) {
-            result = await Award.find({
-                award_id: req.user.winnedAwards[i]
-            }).select({ _id: 0, __v: 0 })
-        }
-        console.log(result);
-        res.status(200).json({
-            "success": true,
-            "code": 200,
-            "message": "Kullanıcı tarafından taratılmış kartlar gönderildi.",
-            "data": {
-                "winnedAwards": result
-            }
-        })
-    } catch(err){
-        res.json(err);
-        console.log(err);
-    }
+const postWinnedAwards = async (req, res) =>{
+    const result  = await Award.find({_id: req.body.award_id})
+    res.status(200).json({
+        "success": true,
+        "code": 200,
+        "message": "Çözülen ödül kullanıcı profiline eklendi ve puanı eksiltildi.",
+        "data": result
+    })
 }
 
 module.exports = {
@@ -227,5 +213,5 @@ module.exports = {
     getAwards, //ödülleri listeleme
     postAward, //ödül ekleme
     winnedAward, //ödül alma, puan düşürülmesi, alınan ödülün kullanıcı profiline eklenmesi
-    getWinnedAwards
+    postWinnedAwards
 };
