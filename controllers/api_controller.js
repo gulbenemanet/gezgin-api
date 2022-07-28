@@ -19,11 +19,6 @@ const getCards = async (req, res) =>{
         //         }
         //     }
         //}
-        const arr = [];
-        for (let int = 0; int < arr.length; int++) {
-            console.log(result[i]);
-            arr[i] = result[i].card_id
-        }
         //console.log("result: " + result)
         console.log("data: " + arr)
         res.status(200).json({
