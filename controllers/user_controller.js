@@ -135,7 +135,7 @@ const logOut = async(req, res) => {
 
 }
 
-const getCurrentUser = (req, res) => {
+const getCurrentUser = async (req, res) => {
     const user  = await User.find({_id: req.body.user_id})
     res.status(200).json({
         "success": true,
