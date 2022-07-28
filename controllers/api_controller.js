@@ -20,12 +20,12 @@ const getCards = async (req, res) =>{
         //     }
         //}
         //console.log("result: " + result)
-        console.log("data: " + arr)
+        //console.log("data: " + arr)
         res.status(200).json({
             "success": true,
             "code": 200,
             "message": "Kullanıcı tarafından taratılmış kartlar gönderildi.",
-            "data": arr
+            "data": result
             // {
             //     "scannedCards": result[0],
             //     "nonScannedCards": allCards
