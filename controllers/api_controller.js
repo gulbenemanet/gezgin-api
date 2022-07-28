@@ -4,7 +4,6 @@ const Test = require('../models/test_model');
 const Award = require('../models/award_model');
 
 const getCards = async (req, res) =>{
-    console.log(req.user)
     let result = []
     try {
         for (let i = 0; i < req.user.scannedCards.length; i++) {
@@ -12,13 +11,13 @@ const getCards = async (req, res) =>{
                 card_id: req.user.scannedCards[i]
             }).select({ _id: 0, __v: 0 })
         }
-        const allCards = await Card.find({});
-        for (let i = 0; i < result.length; i++) {
-            for (let j = 0; j < allCards.length; j++) {
-                if (result[i][0].card_id == allCards[j].card_id) {
-                    allCards.splice(j,1)
-                }
-            }
+        // const allCards = await Card.find({});
+        // for (let i = 0; i < result.length; i++) {
+        //     for (let j = 0; j < allCards.length; j++) {
+        //         if (result[i][0].card_id == allCards[j].card_id) {
+        //             allCards.splice(j,1)
+        //         }
+        //     }
         }
         console.log("result: " + result)
         res.status(200).json({
@@ -27,7 +26,7 @@ const getCards = async (req, res) =>{
             "message": "Kullanıcı tarafından taratılmış kartlar gönderildi.",
             "data": {
                 "scannedCards": result,
-                "nonScannedCards": allCards
+                //"nonScannedCards": allCards
             }
         })
     } catch(err){
