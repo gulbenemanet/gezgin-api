@@ -23,6 +23,7 @@ router.post('/solvedTests', apiController.solvedTests);
 router.get('/getAwards', apiController.getAwards);
 router.post('/postAward', apiController.postAward);
 router.post('/winnedAward', apiController.winnedAward);
+router.get('/getwinnedAward', auth, apiController.getWinnedAwards);
 
 
 module.exports = router;

@@ -192,6 +192,11 @@ const winnedAward = async (req, res) => {
     }
 }
 
+const getWinnedAwards = async (req, res) => {
+    const awards  = await Award.find({_id: req.user.award_id});
+    console.log(awards);
+}
+
 module.exports = {
     getCards, //taratılmış ve taratılmamış kartları listeleme
     postCard, //kart ekleme
@@ -202,5 +207,6 @@ module.exports = {
     getTests, //Taratılan kartların testlerinin listelenmesi
     getAwards, //ödülleri listeleme
     postAward, //ödül ekleme
-    winnedAward //ödül alma, puan düşürülmesi, alınan ödülün kullanıcı profiline eklenmesi
+    winnedAward, //ödül alma, puan düşürülmesi, alınan ödülün kullanıcı profiline eklenmesi
+    getWinnedAwards
 };
