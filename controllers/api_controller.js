@@ -5,11 +5,13 @@ const Award = require('../models/award_model');
 
 const getCards = async (req, res) =>{
     let result = []
+    let arr = []
     try {
         for (let i = 0; i < req.user.scannedCards.length; i++) {
             result[i] = await Card.find({
                 card_id: req.user.scannedCards[i]
             }).select({ _id: 0, __v: 0 })
+            arr[i] = result[i].card_id
         }
         // const allCards = await Card.find({});
         // for (let i = 0; i < result.length; i++) {
@@ -25,7 +27,7 @@ const getCards = async (req, res) =>{
             "success": true,
             "code": 200,
             "message": "Kullanıcı tarafından taratılmış kartlar gönderildi.",
-            "data": result
+            "data": arr
             // {
             //     "scannedCards": result[0],
             //     "nonScannedCards": allCards
