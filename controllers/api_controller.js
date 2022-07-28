@@ -193,7 +193,8 @@ const winnedAward = async (req, res) => {
 }
 
 const postWinnedAwards = async (req, res) =>{
-    const result  = await Award.find({_id: req.body.award_id})
+    const result  = await Award.find({_id: req.body.award_id});
+    console.log(result);
     res.status(200).json({
         "success": true,
         "code": 200,
