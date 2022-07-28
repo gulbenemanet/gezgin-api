@@ -12,7 +12,7 @@ router.get('/', (req, res) => {res.json("ok")});
 router.post('/signIn', userController.signIn);
 router.post('/signUp', userController.signUp);
 router.get('/logout', userController.logOut);
-router.get('/currentUser', userController.getCurrentUser);
+router.get('/currentUser', auth, userController.getCurrentUser);
 router.get('/getCards', apiController.getCards);
 router.post('/postCard', apiController.postCard);
 router.post('/scannedCards', apiController.scannedCards);
