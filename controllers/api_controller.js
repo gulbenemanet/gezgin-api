@@ -134,8 +134,10 @@ const getTests = async (req, res) => {
         result[i] = await Test.find({
             card_id : req.user.scannedCards[i]
         }) 
-        console.log(result[i][i].card_id);
-        arr[i] = result[i][0].card_id
+        for (let j = 0; j < rasult[i].length; j++) {
+            arr[j] = result[i][j].test_id
+            
+        }
     }
     console.log(arr);
     res.status(200).json({
