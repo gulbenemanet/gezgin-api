@@ -129,16 +129,18 @@ const getSolvedTests = async (req,res) => {
 
 const getTests = async (req, res) => {
     let result = [];
+    let  arr = [];
     for (let i = 0; i < req.user.scannedCards.length; i++) {
         result[i] = await Test.find({
             card_id : req.user.scannedCards[i]
         }) 
+        arr[i] = result[i][0].card_id
     }
     res.status(200).json({
         "success": true,
         "code": 200,
         "message": "Taratılan kartların çözülecek testleri gönderildi.",
-        "data": result
+        "data": arr
     })
 }
 
