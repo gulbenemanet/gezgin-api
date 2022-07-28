@@ -199,7 +199,7 @@ const postWinnedAwards = async (req, res) =>{
         "success": true,
         "code": 200,
         "message": "Çözülen ödül kullanıcı profiline eklendi ve puanı eksiltildi.",
-        "data": result
+        "data": result[0]
     })
 }
 
