@@ -194,7 +194,7 @@ const winnedAward = async (req, res) => {
 
 const getWinnedAwards = async (req, res) =>{
     console.log(req.user)
-    let result = []
+    const result = {};
     try {
         for (let i = 0; i < req.user.winnedAwards.length; i++) {
             result[i] = await Award.find({
