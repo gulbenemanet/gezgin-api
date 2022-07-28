@@ -141,7 +141,7 @@ const getCurrentUser = async (req, res) => {
         "success": true,
         "code": 200,
         "message": "Kullanıcı bilgileri gönderildi.",
-        "data": user[0]
+        "data": user
     })
 }
 
