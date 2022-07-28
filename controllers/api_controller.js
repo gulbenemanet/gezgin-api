@@ -18,7 +18,7 @@ const getCards = async (req, res) =>{
         //             allCards.splice(j,1)
         //         }
         //     }
-        }
+        //}
         console.log("result: " + result)
         res.status(200).json({
             "success": true,
