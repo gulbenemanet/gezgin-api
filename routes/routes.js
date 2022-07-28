@@ -13,7 +13,7 @@ router.post('/signIn', userController.signIn);
 router.post('/signUp', userController.signUp);
 router.get('/logout', userController.logOut);
 router.get('/currentUser', auth, userController.getCurrentUser);
-router.get('/getCards', auth apiController.getCards);
+router.get('/getCards', auth, apiController.getCards);
 router.post('/postCard', apiController.postCard);
 router.post('/scannedCards', apiController.scannedCards);
 router.get('/getSolvedTests', apiController.getSolvedTests);
