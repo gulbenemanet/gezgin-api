@@ -11,7 +11,7 @@ const getCards = async (req, res) =>{
             result[i] = await Card.find({
                 card_id: req.user.scannedCards[i]
             }).select({ _id: 0, __v: 0 })
-            arr[i] = result[i].card_id
+            arr[i] = result[i][0].card_id
         }
         // const allCards = await Card.find({});
         // for (let i = 0; i < result.length; i++) {
