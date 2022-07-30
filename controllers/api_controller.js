@@ -195,7 +195,7 @@ const winnedAward = async (req, res) => {
         res.status(200).json({
             "success": true,
             "code": 200,
-            "message": "Çözülen ödül kullanıcı profiline eklendi ve puanı eksiltildi.",
+            "message": "Alınan ödül kullanıcı profiline eklendi ve puanı eksiltildi.",
             "data": result
         })
     }
@@ -211,7 +211,7 @@ const postWinnedAwards = async (req, res) =>{
     res.status(200).json({
         "success": true,
         "code": 200,
-        "message": "Çözülen ödül kullanıcı profiline eklendi ve puanı eksiltildi.",
+        "message": "Kullanıcının kazandığı ödüller gönderildi.",
         "data": result[0]
     })
 }

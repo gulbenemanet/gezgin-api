@@ -1,16 +1,16 @@
 const router = require('express').Router();
-const userController = require('../controllers/user_controller')
+const userController = require('../controllers/user_controller');
 const auth = require('../middlewares/auth');
-const apiController = require('../controllers/api_controller')
-
-
+const apiController = require('../controllers/api_controller');
+const validate = require('../middleware/validation');
+const UserValidation = require('../models/user_validation')
 
 
 
 router.get('/', (req, res) => {res.json("ok")});
 
 router.post('/signIn', userController.signIn);
-router.post('/signUp', userController.signUp);
+router.post('/signUp', validate(UserValidation), userController.signUp);
 router.get('/logout', userController.logOut);
 router.get('/currentUser', auth, userController.getCurrentUser);
 router.get('/getCards', auth, apiController.getCards);
