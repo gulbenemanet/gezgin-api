@@ -23,7 +23,7 @@ const userSchema = new Schema({
     },
     phoneNumber: {
         type: String,
-        //unique: true
+        unique: true
     },
     point: {
         type: Number,
