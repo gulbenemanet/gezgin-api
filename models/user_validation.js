@@ -5,7 +5,7 @@ const signupValidation = Joi.object({
     lastName: Joi.string().required(),
     email: Joi.string().email().required(),
     password: Joi.string().required(),
-    //phoneNumber: Joi.string().required().regex(/^\d{3}-\d{3}-\d{4}$/)
+    phoneNumber: Joi.string().required()
 })
 
 module.exports = signupValidation
