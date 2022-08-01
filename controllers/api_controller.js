@@ -194,7 +194,6 @@ const winnedAward = async (req, res) => {
         const chosenAward  = await Award.find({award_id: req.body.award_id})
 
         if (point < chosenAward[0].point) {
-            const result = await User.updateOne({_id : id},{point : point, $push : {winnedAwards: req.body.award_id}});
             //console.log(result);
             res.status(400).json({
                 "success": false,
