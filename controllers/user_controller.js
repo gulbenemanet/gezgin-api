@@ -30,7 +30,7 @@ const signIn = async(req, res) => {
                 } else if (result) {
                     const token = jwt.sign({
                         id: user._id
-                    }, 'supersecret', {
+                    }, 'signing key', {
                         expiresIn: '24h'
                     })
                     res.status(200).json({
@@ -95,7 +95,7 @@ const signUp = async(req, res) => {
                 } else {
                     // const token = jwt.sign({
                     //     id: user._id
-                    // }, 'supersecret', {
+                    // }, 'signing key', {
                     //     expiresIn: '24h'
                     // })
                     res.status(200).json({
