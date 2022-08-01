@@ -192,15 +192,28 @@ const winnedAward = async (req, res) => {
         let point = user[0].point;
         const id = user[0]._id; 
         const chosenAward  = await Award.find({award_id: req.body.award_id})
-        point = point - chosenAward[0].point;
-        const result = await User.updateOne({_id : id},{point : point, $push : {winnedAwards: req.body.award_id}});
-        console.log(result);
-        res.status(200).json({
-            "success": true,
-            "code": 200,
-            "message": "Alınan ödül kullanıcı profiline eklendi ve puanı eksiltildi.",
-            "data": result
-        })
+
+        if (point < chosenAward[0].point) {
+            point = point - chosenAward[0].point;
+            const result = await User.updateOne({_id : id},{point : point, $push : {winnedAwards: req.body.award_id}});
+            //console.log(result);
+            res.status(400).json({
+                "success": false,
+                "code": 400,
+                "message": "Kullanıcının bu ödüle puanı yetmiyor.",
+            }) 
+        } else {
+            point = point - chosenAward[0].point;
+            const result = await User.updateOne({_id : id},{point : point, $push : {winnedAwards: req.body.award_id}});
+            console.log(result);
+            res.status(200).json({
+                "success": true,
+                "code": 200,
+                "message": "Alınan ödül kullanıcı profiline eklendi ve puanı eksiltildi.",
+                "data": result
+            })            
+        }
+
     }
     catch(err){
         res.json(err);
