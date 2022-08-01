@@ -6,6 +6,7 @@ const Award = require('../models/award_model');
 const getCards = async (req, res) =>{
     let result = []
     let arr = []
+    console.log(req.user);
     try {
         for (let i = 0; i < req.user.scannedCards.length; i++) {
             result[i] = await Card.find({
