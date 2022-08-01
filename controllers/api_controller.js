@@ -95,6 +95,7 @@ const postTest = async (req, res) => {
 const solvedTests = async (req, res) => {  
     try{
         const user  = await User.find({_id: req.body.user_id})
+        console.log(user);
         let point = user[0].point;
         const id = user[0]._id; 
         const solvedTest = await Test.find({test_id: req.body.test_id})
