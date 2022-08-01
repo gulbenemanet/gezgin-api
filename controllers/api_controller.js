@@ -188,12 +188,13 @@ const getAwards = async (req, res) =>{
 const winnedAward = async (req, res) => {
     try{
         const user  = await User.find({_id: req.body.user_id})
-        console.log(user);
+        //console.log(user);
         let point = user[0].point;
         const id = user._id; 
         const chosenAward  = await Award.find({award_id: req.body.award_id})
         point = point - chosenAward[0].point;
         const result = await User.updateOne({_id : id},{point : point, $push : {winnedAwards: req.body.award_id}});
+        console.log(result);
         res.status(200).json({
             "success": true,
             "code": 200,
