@@ -26,7 +26,7 @@ module.exports = async function auth(req, res, next) {
                 const sonuc = jwt.verify(token, 'signing key')
 
                 console.log(sonuc);
-                const bulunan = await User.findById(sonuc._id)
+                const bulunan = await User.findById(sonuc.id)
                 req.user = bulunan
                 next()
             }
