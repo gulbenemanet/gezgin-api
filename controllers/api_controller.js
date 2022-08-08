@@ -21,9 +21,9 @@ const getCards = async (req, res) =>{
         //             allCards.splice(j,1)
         //         }
         //     }
-        //}
-        //console.log("result: " + result)
-        //console.log("data: " + arr)
+        // }
+        // console.log("result: " + result)
+        // console.log("data: " + arr)
         res.status(200).json({
             "success": true,
             "code": 200,
@@ -161,6 +161,15 @@ const getTests = async (req, res) => {
             k++;    
         }
     }
+    for (let i = 0; i < req.user.solvedTests.length; i++) {
+        for (let j = 0; j < arr.length; j++) {
+            if (rreq.user.solvedTests[i] == arr[j]) {
+                arr.splice(j,1)
+            }
+        }
+    }
+    console.log("result: " + result)
+    console.log("data: " + arr)
 
     console.log(arr);
     res.status(200).json({
