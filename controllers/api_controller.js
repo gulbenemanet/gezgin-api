@@ -78,11 +78,7 @@ const scannedCards = async (req, res)=> {
             if (typeof(card_id) != "string") {
                 card_id = parseInt(card_id)
             }
-            const card_id2 = 2 * card_id;
-            const card_id3 = card_id2 - 1;
             const result = await User.updateOne({_id : id},{$push : {scannedCards: card_id}});
-            const result1 = await User.updateOne({_id : id},{$push : {solvedTests: card_id2}});
-            const result2 = await User.updateOne({_id : id},{$push : {solvedTests: card_id3}});
             res.status(200).json({
                 "success": true,
                 "code": 200,
