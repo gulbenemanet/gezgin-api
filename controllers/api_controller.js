@@ -133,7 +133,7 @@ const solvedTests = async (req, res) => {
 }
 
 const getSolvedTests = async (req,res) => {
-    const result = await User.findOne({_id: req.user.user_id});
+    const result = await User.findOne({_id: req.user._id});
     console.log("result test: " + result);
     res.status(200).json({
         "success": true,
