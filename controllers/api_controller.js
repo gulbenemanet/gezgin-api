@@ -138,7 +138,7 @@ const getSolvedTests = async (req,res) => {
         "success": true,
         "code": 200,
         "message": "Çözülen testler gönderildi.",
-        "data": result[0].solvedTests
+        "data": result
     })
 }
 
