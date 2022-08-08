@@ -133,17 +133,12 @@ const solvedTests = async (req, res) => {
 }
 
 const getSolvedTests = async (req,res) => {
-    let result= []
-    for (let i = 0; i < req.user.solvedTests.length; i++) {
-        result[i] = await Test.find({
-            test_id : req.user.solvedTests[i]
-        }) 
-    }
+    const result = User.find({_id: req.body.user_id});
     res.status(200).json({
         "success": true,
         "code": 200,
         "message": "Çözülen testler gönderildi.",
-        "data": result
+        "data": result[i].solvedTests
     })
 }
 
