@@ -159,7 +159,7 @@ const getTests = async (req, res) => {
     for (let i = 0; i < arr.length; i++) {
         for (let j = 0; j < req.user.solvedTests.length; j++) {
             if (arr[i] == req.user.solvedTests[j]) {
-                console.log(arr[j]);
+                console.log(req.user.solvedTests[j]);
                 arr.splice(j,1)
             }
         }
