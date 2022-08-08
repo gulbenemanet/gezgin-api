@@ -260,7 +260,7 @@ module.exports = {
     postTest, //test ekleme
     scannedCards, //Kullanıcı kart tarattığında profiline eklenmesi
     solvedTests, //Kullanıcı test çözdüğünde teste göre puan eklenmesi ve çözülen testin kullanıcının profiline eklenmesi
-    getSolvedTests, //Çözülen testlerin listelenmesi
+    //getSolvedTests, //Çözülen testlerin listelenmesi
     getTests, //Taratılan kartların testlerinin listelenmesi
     getAwards, //ödülleri listeleme
     postAward, //ödül ekleme
