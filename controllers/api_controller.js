@@ -132,15 +132,15 @@ const solvedTests = async (req, res) => {
     }
 }
 
-const getSolvedTests = async (req,res) => {
-    const result = await User.findOne({_id: req.user._id});
-    res.status(200).json({
-        "success": true,
-        "code": 200,
-        "message": "Çözülen testler gönderildi.",
-        "data": result.solvedTest
-    })
-}
+// const getSolvedTests = async (req,res) => {
+//     const result = await User.findOne({_id: req.user._id});
+//     res.status(200).json({
+//         "success": true,
+//         "code": 200,
+//         "message": "Çözülen testler gönderildi.",
+//         "data": result
+//     })
+// }
 
 const getTests = async (req, res) => {
     let result = [];
@@ -155,15 +155,16 @@ const getTests = async (req, res) => {
             arr[k] = result[i][j].test_id;
             k++;    
         }
-    }
+    }    
+    console.log("result: " + result)
     for (let i = 0; i < req.user.solvedTests.length; i++) {
         for (let j = 0; j < arr.length; j++) {
-            if (rreq.user.solvedTests[i] == arr[j]) {
+            if (req.user.solvedTests[i] == arr[j]) {
                 arr.splice(j,1)
             }
         }
     }
-    console.log("result: " + result)
+
     console.log("data: " + arr)
 
     console.log(arr);
