@@ -134,12 +134,11 @@ const solvedTests = async (req, res) => {
 
 const getSolvedTests = async (req,res) => {
     const result = await User.findOne({_id: req.user._id});
-    console.log("result test: " + result);
     res.status(200).json({
         "success": true,
         "code": 200,
         "message": "Çözülen testler gönderildi.",
-        "data": result
+        "data": result.solvedTest
     })
 }
 
