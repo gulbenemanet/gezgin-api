@@ -133,7 +133,7 @@ const solvedTests = async (req, res) => {
 }
 
 const getSolvedTests = async (req,res) => {
-    const result = User.find({_id: req.body.user_id});
+    const result = await User.find({_id: req.body.user_id});
     console.log("result test: " + result);
     res.status(200).json({
         "success": true,
