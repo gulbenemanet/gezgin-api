@@ -150,12 +150,20 @@ const getTests = async (req, res) => {
         result[i] = await Test.find({
             card_id : req.user.scannedCards[i]
         })    
-        console.log(result[i].length);
+        //console.log(result[i].length);
         for (let j = 0; j < result[i].length; j++) {
             arr[k] = result[i][j].test_id;
             k++;    
         }
-    }    
+    }  
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < req.user.solvedTests.length; j++) {
+            if (arr[i] == req.user.solvedTests[j]) {
+                arr.splice(j,1)
+            }
+        }
+    }
+     
     console.log(arr);
     res.status(200).json({
         "success": true,
