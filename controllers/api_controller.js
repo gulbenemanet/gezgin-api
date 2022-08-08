@@ -216,7 +216,7 @@ const winnedAward = async (req, res) => {
             res.status(400).json({
                 "success": false,
                 "code": 400,
-                "message": "Kullanıcının bu ödüle puanı yetmiyor.",
+                "message": "Bu ödüle puanınız yetmiyor.",
             }) 
         } else {
             point = point - chosenAward[0].point;
